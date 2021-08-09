@@ -305,7 +305,12 @@ fi
 
 foundFingerprint=false
 for manifest in /vendor/manifest.xml /vendor/etc/vintf/manifest.xml /odm/etc/vintf/manifest.xml;do
-    if grep -q -e android.hardware.biometrics.fingerprint -e vendor.oppo.hardware.biometrics.fingerprint $manifest;then
+    if grep -q \
+            -e android.hardware.biometrics.fingerprint \
+            -e vendor.oppo.hardware.biometrics.fingerprint \
+            -e vendor.oplus.hardware.biometrics.fingerprint \
+            $manifest;
+        then
         foundFingerprint=true
     fi
 done
@@ -399,6 +404,7 @@ if getprop ro.vendor.build.fingerprint | grep -iq \
     -e motorola/hannah -e motorola/james -e motorola/pettyl -e xiaomi/cepheus \
     -e xiaomi/grus -e xiaomi/cereus -e xiaomi/cactus -e xiaomi/raphael -e xiaomi/davinci \
     -e xiaomi/ginkgo -e xiaomi/laurel_sprout -e xiaomi/andromeda \
+    -e iaomi/renoir \
     -e redmi/curtana -e redmi/picasso \
     -e bq/Aquaris_M10 ; then
     mount -o bind /mnt/phh/empty_dir /vendor/lib64/soundfx
